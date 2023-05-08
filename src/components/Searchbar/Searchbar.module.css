@@ -1,0 +1,22 @@
+.form_group {
+  position: relative;
+}
+
+span {
+  position: absolute;
+  z-index: 2;
+  margin-left: 4px;
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 3rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.form_control {
+  padding-left: 2.5rem;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 50px;
+}

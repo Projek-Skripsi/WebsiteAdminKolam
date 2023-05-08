@@ -1,0 +1,19 @@
+@import "./reset.css";
+@import "./common.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+
+:root {
+  --aqua: #1caafa;
+  --dark-blue: #31373e;
+  --dark-blue-2: #212a34;
+  --green: #148e2f;
+  --blue: #106af0;
+  --red: #f06464;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --fw-black: 900;
+}

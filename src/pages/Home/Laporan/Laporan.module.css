@@ -1,0 +1,22 @@
+.card {
+  color: #fff;
+  padding: 16px 24px;
+  background-color: var(--aqua);
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card_title {
+  font-size: 18px;
+  font-weight: var(--fw-medium);
+  margin: 0;
+}
+
+.card_text {
+  font-size: 32px;
+  font-weight: var(--fw-semibold);
+  margin: 0;
+}

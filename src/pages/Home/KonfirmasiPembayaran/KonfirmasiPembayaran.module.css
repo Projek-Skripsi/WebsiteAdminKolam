@@ -1,0 +1,17 @@
+#konfirmasi_pembayaran {
+  margin-top: 40px;
+}
+
+.count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--aqua);
+  padding: 8px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  color: #fff;
+  font-weight: var(--fw-semibold);
+}
