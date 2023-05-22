@@ -6,7 +6,7 @@ import { MagnifyingGlass } from "@phosphor-icons/react";
 const Searchbar = () => {
   return (
     <div className={styles.form_group}>
-      <span>
+      <span className={styles.icon}>
         <MagnifyingGlass size={18} color="#666666" />
       </span>
       <input

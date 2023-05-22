@@ -14,12 +14,13 @@
   width: 360px;
 }
 
-.text_area {
+.select {
   width: 360px;
-  height: 160px;
 }
 
-.btn_edit {
-  width: 110px;
-  align-self: flex-end;
+.button_group {
+  display: flex;
+  gap: 8px;
+  flex-direction: row;
+  width: 100%;
 }

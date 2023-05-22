@@ -8,7 +8,7 @@ const Sidebar = () => {
   return (
     <div id={styles.sidebar}>
       <header>Kolam Sejahtera</header>
-      <ul className="nav flex-column gap-2">
+      <ul className="nav flex-column gap-1">
         {navlink.map((item, index) => (
           <li key={index} className="nav-item">
             <NavLink
