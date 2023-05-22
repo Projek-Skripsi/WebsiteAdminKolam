@@ -11,6 +11,12 @@ const Home = lazy(() =>
 const ProfilPerusahaan = lazy(() =>
   import("pages").then((module) => ({ default: module.ProfilPerusahaan }))
 );
+const Kolam = lazy(() =>
+  import("pages").then((module) => ({ default: module.Kolam }))
+);
+const DetailKolam = lazy(() =>
+  import("pages").then((module) => ({ default: module.DetailKolam }))
+);
 
 function App() {
   return (
@@ -20,6 +26,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profil-perusahaan" element={<ProfilPerusahaan />} />
+            <Route path="/kolam" element={<Kolam />} />
+            <Route path="/kolam/:id" element={<DetailKolam />} />
           </Routes>
         </Layout>
       </Suspense>

@@ -2,7 +2,7 @@
   position: relative;
 }
 
-span {
+.icon {
   position: absolute;
   z-index: 2;
   margin-left: 4px;
