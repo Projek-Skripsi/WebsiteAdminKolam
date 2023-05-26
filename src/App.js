@@ -17,6 +17,12 @@ const Kolam = lazy(() =>
 const DetailKolam = lazy(() =>
   import("pages").then((module) => ({ default: module.DetailKolam }))
 );
+const MetodePembayaran = lazy(() =>
+  import("pages").then((module) => ({ default: module.MetodePembayaran }))
+);
+const DetailMetodePembayaran = lazy(() =>
+  import("pages").then((module) => ({ default: module.DetailMetodePembayaran }))
+);
 
 function App() {
   return (
@@ -28,6 +34,11 @@ function App() {
             <Route path="/profil-perusahaan" element={<ProfilPerusahaan />} />
             <Route path="/kolam" element={<Kolam />} />
             <Route path="/kolam/:id" element={<DetailKolam />} />
+            <Route path="/metode-pembayaran" element={<MetodePembayaran />} />
+            <Route
+              path="/metode-pembayaran/:id"
+              element={<DetailMetodePembayaran />}
+            />
           </Routes>
         </Layout>
       </Suspense>
