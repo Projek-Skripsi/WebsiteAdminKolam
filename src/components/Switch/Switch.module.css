@@ -1,31 +1,5 @@
-.btn_tambah {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  padding: 12px 0;
-  margin-bottom: 24px;
-  gap: 8px;
-}
-
-#tambah_kolam {
-  margin: 40px 0;
-}
-
-.btn_simpan {
-  background-color: var(--aqua);
-  color: #ffffff;
-  width: 110px;
-  height: 48px;
-}
-
-.btn_batal {
-  width: 110px;
-  height: 48px;
-}
-
 .switch input {
-  display: none;
+  /* display: none; */
 }
 
 .switch label {

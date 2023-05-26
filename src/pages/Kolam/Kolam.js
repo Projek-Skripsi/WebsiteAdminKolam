@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import cn from "classnames";
 import styles from "./Kolam.module.css";
+import loadable from "@loadable/component";
 import kolam from "mocks/kolam";
 import { Plus } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 
+const Switch = loadable(() =>
+  import("components").then((module) => module.Switch)
+);
+
 const Kolam = () => {
   const [namaKolam, setNamaKolam] = useState("");
   const [tambahKolam, setTambahKolam] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   return (
     <section id={styles.kolam}>
@@ -90,7 +96,17 @@ const Kolam = () => {
               <td>
                 <img src={item.gambar} alt="bukti_pembayaran" />
               </td>
-              <td>{item.status}</td>
+              <td>
+                <div className={styles.switch}>
+                  <input
+                    type="checkbox"
+                    id={`toggle-btn-${index}`}
+                    checked={checked}
+                    onChange={() => setChecked(!checked)}
+                  />
+                  <label htmlFor={`toggle-btn-${index}`}></label>
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>
