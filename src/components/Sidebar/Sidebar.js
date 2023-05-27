@@ -1,26 +1,20 @@
 import React from 'react'
-import cn from 'classnames'
 import styles from './Sidebar.module.css'
-import navlink from 'mocks/navlink'
 import { NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
   return (
     <div id={styles.sidebar}>
       <header>Kolam Sejahtera</header>
-      <ul className="nav flex-column gap-1">
-        {navlink.map((item, index) => (
-          <li key={index} className="nav-item">
-            <NavLink
-              to={item.path}
-              className={({ isActive }) => (isActive ? styles.active : '')}
-              end={item.end}
-            >
-              {item.name}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+      <div className={styles.menuAdmin}>
+        <NavLink to='/' className={({ isActive }) => (isActive ? styles.btnMenuActive : styles.btnMenu)}>Dashboard</NavLink>
+        <NavLink to='/profil' className={({ isActive }) => (isActive ? styles.btnMenuActive : styles.btnMenu)}>Profil Perusahaan</NavLink>
+        <NavLink to='/carousel' className={({ isActive }) => (isActive ? styles.btnMenuActive : styles.btnMenu)}>Carousel</NavLink>
+        <NavLink to='/kategori' className={({ isActive }) => (isActive ? styles.btnMenuActive : styles.btnMenu)}>Kategori Kolam</NavLink>
+        <NavLink to='/kolam' className={({ isActive }) => (isActive ? styles.btnMenuActive : styles.btnMenu)}>Kolam</NavLink>
+        <NavLink to='/pembayaran' className={({ isActive }) => (isActive ? styles.btnMenuActive : styles.btnMenu)}>Metode Pembayaran</NavLink>
+        <NavLink to='/riwayat' className={({ isActive }) => (isActive ? styles.btnMenuActive : styles.btnMenu)}>Riwayat Pemesanan</NavLink>
+      </div>
     </div>
   )
 }

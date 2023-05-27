@@ -17,3 +17,10 @@
   --fw-extrabold: 800;
   --fw-black: 900;
 }
+
+.main {
+  left: 280px;
+  position: relative;
+  width: calc(100% - 280px);
+  padding: 56px 32px;
+}
