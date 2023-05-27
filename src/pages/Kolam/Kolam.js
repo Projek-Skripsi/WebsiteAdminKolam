@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import cn from "classnames";
-import styles from "./Kolam.module.css";
-import loadable from "@loadable/component";
-import kolam from "mocks/kolam";
-import { Plus } from "@phosphor-icons/react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react'
+import cn from 'classnames'
+import styles from './Kolam.module.css'
+import loadable from '@loadable/component'
+import kolam from 'mocks/kolam'
+import { Plus } from '@phosphor-icons/react'
+import { Link } from 'react-router-dom'
 
 const Switch = loadable(() =>
-  import("components").then((module) => module.Switch)
-);
+  import('components').then((module) => module.Switch)
+)
 
 const Kolam = () => {
-  const [namaKolam, setNamaKolam] = useState("");
-  const [tambahKolam, setTambahKolam] = useState(false);
-  const [checked, setChecked] = useState(false);
+  const [namaKolam, setNamaKolam] = useState('')
+  const [tambahKolam, setTambahKolam] = useState(false)
+  const [checked, setChecked] = useState(false)
 
   return (
     <section id={styles.kolam}>
       <div className="page_title">Data Kolam</div>
       {tambahKolam === false && (
         <button
-          className={cn(styles.btn_tambah, "btn btn-success")}
+          className={cn(styles.btn_tambah, 'btn btn-success')}
           onClick={() => setTambahKolam(!tambahKolam)}
         >
           <Plus size={18} color="#ffffff" weight="bold" />
@@ -64,12 +64,12 @@ const Kolam = () => {
           </div>
           <div className="d-flex gap-2 align-items-center w-100 justify-content-end">
             <button
-              className={cn(styles.btn_batal, "btn btn-outline-secondary")}
+              className={cn(styles.btn_batal, 'btn btn-outline-secondary')}
               onClick={() => setTambahKolam(false)}
             >
               Batal
             </button>
-            <button className={cn(styles.btn_simpan, "btn")}>Simpan</button>
+            <button className={cn(styles.btn_simpan, 'btn')}>Simpan</button>
           </div>
         </section>
       )}
@@ -112,7 +112,7 @@ const Kolam = () => {
         </tbody>
       </table>
     </section>
-  );
-};
+  )
+}
 
-export default Kolam;
+export default Kolam

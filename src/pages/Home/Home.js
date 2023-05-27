@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react'
 
-import Laporan from "./Laporan/Laporan";
-import Pengunjung from "./Pengunjung/Pengunjung";
-import KonfirmasiPembayaran from "./KonfirmasiPembayaran/KonfirmasiPembayaran";
-import MenungguPembayaran from "./MenungguPembayaran/MenungguPembayaran";
+import Laporan from './Laporan/Laporan'
+import Pengunjung from './Pengunjung/Pengunjung'
+import KonfirmasiPembayaran from './KonfirmasiPembayaran/KonfirmasiPembayaran'
+import MenungguPembayaran from './MenungguPembayaran/MenungguPembayaran'
 
 const Home = () => {
   return (
@@ -13,7 +13,7 @@ const Home = () => {
       <KonfirmasiPembayaran />
       <MenungguPembayaran />
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

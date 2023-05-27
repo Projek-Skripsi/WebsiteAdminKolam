@@ -1,10 +1,10 @@
-import React from "react";
-import loadable from "@loadable/component";
-import styles from "./Layout.module.css";
+import React from 'react'
+import loadable from '@loadable/component'
+import styles from './Layout.module.css'
 
 const Sidebar = loadable(() =>
-  import("components").then((module) => ({ default: module.Sidebar }))
-);
+  import('components').then((module) => ({ default: module.Sidebar }))
+)
 
 const Layout = ({ children }) => {
   return (
@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
         {children}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

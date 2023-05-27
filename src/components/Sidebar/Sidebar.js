@@ -1,8 +1,8 @@
-import React from "react";
-import cn from "classnames";
-import styles from "./Sidebar.module.css";
-import navlink from "mocks/navlink";
-import { NavLink } from "react-router-dom";
+import React from 'react'
+import cn from 'classnames'
+import styles from './Sidebar.module.css'
+import navlink from 'mocks/navlink'
+import { NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
   return (
@@ -13,7 +13,7 @@ const Sidebar = () => {
           <li key={index} className="nav-item">
             <NavLink
               to={item.path}
-              className={({ isActive }) => (isActive ? styles.active : "")}
+              className={({ isActive }) => (isActive ? styles.active : '')}
               end={item.end}
             >
               {item.name}
@@ -22,7 +22,7 @@ const Sidebar = () => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

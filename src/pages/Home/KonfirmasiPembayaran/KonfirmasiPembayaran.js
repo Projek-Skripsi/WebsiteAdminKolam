@@ -1,11 +1,11 @@
-import React from "react";
-import cn from "classnames";
-import konfirmasi from "mocks/konfirmasi";
-import styles from "./KonfirmasiPembayaran.module.css";
+import React from 'react'
+import cn from 'classnames'
+import konfirmasi from 'mocks/konfirmasi'
+import styles from './KonfirmasiPembayaran.module.css'
 
 const KonfirmasiPembayaran = () => {
-  const clonedKonfirmasi = Array(4).fill(konfirmasi).flat();
-  const count = clonedKonfirmasi.length;
+  const clonedKonfirmasi = Array(4).fill(konfirmasi).flat()
+  const count = clonedKonfirmasi.length
 
   return (
     <section id={styles.konfirmasi_pembayaran}>
@@ -49,7 +49,7 @@ const KonfirmasiPembayaran = () => {
         </tbody>
       </table>
     </section>
-  );
-};
+  )
+}
 
-export default KonfirmasiPembayaran;
+export default KonfirmasiPembayaran

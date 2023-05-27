@@ -1,10 +1,10 @@
-import React from "react";
-import styles from "./MenungguPembayaran.module.css";
-import menunggu_pembayaran from "mocks/menunggupembayaran";
+import React from 'react'
+import styles from './MenungguPembayaran.module.css'
+import menungguPembayaran from 'mocks/menunggupembayaran'
 
 const MenungguPembayaran = () => {
-  const clonedData = Array(4).fill(menunggu_pembayaran).flat();
-  const count = clonedData.length;
+  const clonedData = Array(4).fill(menungguPembayaran).flat()
+  const count = clonedData.length
 
   return (
     <section id={styles.menunggu_pembayaran}>
@@ -39,7 +39,7 @@ const MenungguPembayaran = () => {
         </tbody>
       </table>
     </section>
-  );
-};
+  )
+}
 
-export default MenungguPembayaran;
+export default MenungguPembayaran

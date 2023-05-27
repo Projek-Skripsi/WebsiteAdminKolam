@@ -1,12 +1,12 @@
-import React from "react";
-import cn from "classnames";
-import loadable from "@loadable/component";
-import styles from "./Pengunjung.module.css";
-import pengunjung from "mocks/pengunjung";
+import React from 'react'
+import cn from 'classnames'
+import loadable from '@loadable/component'
+import styles from './Pengunjung.module.css'
+import pengunjung from 'mocks/pengunjung'
 
 const Searchbar = loadable(() =>
-  import("components").then((module) => module.Searchbar)
-);
+  import('components').then((module) => module.Searchbar)
+)
 
 const Pengunjung = () => {
   return (
@@ -38,13 +38,13 @@ const Pengunjung = () => {
                 <button
                   type="button"
                   className={cn([
-                    "btn w-100",
+                    'btn w-100',
                     {
-                      "btn-outline-success": item.status === "Berhasil",
-                      "btn-outline-danger":
-                        item.status === "Menunggu Pembayaran" ||
-                        item.status === "Menunggu Konfirmasi",
-                    },
+                      'btn-outline-success': item.status === 'Berhasil',
+                      'btn-outline-danger':
+                        item.status === 'Menunggu Pembayaran' ||
+                        item.status === 'Menunggu Konfirmasi'
+                    }
                   ])}
                 >
                   {item.tombol}
@@ -55,7 +55,7 @@ const Pengunjung = () => {
         </tbody>
       </table>
     </section>
-  );
-};
+  )
+}
 
-export default Pengunjung;
+export default Pengunjung

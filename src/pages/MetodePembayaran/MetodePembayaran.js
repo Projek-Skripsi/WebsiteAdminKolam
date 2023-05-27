@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import cn from "classnames";
-import styles from "./MetodePembayaran.module.css";
-import metodepembayaran from "mocks/metodepembayaran";
-import { Plus } from "@phosphor-icons/react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react'
+import cn from 'classnames'
+import styles from './MetodePembayaran.module.css'
+import metodepembayaran from 'mocks/metodepembayaran'
+import { Plus } from '@phosphor-icons/react'
+import { Link } from 'react-router-dom'
 
 const MetodePembayaran = () => {
-  const [tambahPembayaran, setTambahPembayaran] = useState(false);
-  const [namaPembayaran, setNamaPembayaran] = useState("");
-  const [nomorRekening, setNomorRekening] = useState("");
-  const [atasNama, setAtasNama] = useState("");
-  const [checked, setChecked] = useState(false);
+  const [tambahPembayaran, setTambahPembayaran] = useState(false)
+  const [namaPembayaran, setNamaPembayaran] = useState('')
+  const [nomorRekening, setNomorRekening] = useState('')
+  const [atasNama, setAtasNama] = useState('')
+  const [checked, setChecked] = useState(false)
 
   return (
     <section id={styles.metode_pembayaran}>
       <div className="page_title">Metode Pembayaran</div>
       {tambahPembayaran === false && (
         <button
-          className={cn(styles.btn_tambah, "btn btn-success")}
+          className={cn(styles.btn_tambah, 'btn btn-success')}
           onClick={() => setTambahPembayaran(!tambahPembayaran)}
         >
           <Plus size={18} color="#ffffff" weight="bold" />
@@ -59,12 +59,12 @@ const MetodePembayaran = () => {
           </div>
           <div className="d-flex gap-2 align-items-center w-100 justify-content-end">
             <button
-              className={cn(styles.btn_batal, "btn btn-outline-secondary")}
+              className={cn(styles.btn_batal, 'btn btn-outline-secondary')}
               onClick={() => setTambahPembayaran(false)}
             >
               Batal
             </button>
-            <button className={cn(styles.btn_simpan, "btn")}>Simpan</button>
+            <button className={cn(styles.btn_simpan, 'btn')}>Simpan</button>
           </div>
         </section>
       )}
@@ -105,7 +105,7 @@ const MetodePembayaran = () => {
         </tbody>
       </table>
     </section>
-  );
-};
+  )
+}
 
-export default MetodePembayaran;
+export default MetodePembayaran

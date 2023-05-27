@@ -1,7 +1,7 @@
-import React from "react";
-import cn from "classnames";
-import styles from "./Searchbar.module.css";
-import { MagnifyingGlass } from "@phosphor-icons/react";
+import React from 'react'
+import cn from 'classnames'
+import styles from './Searchbar.module.css'
+import { MagnifyingGlass } from '@phosphor-icons/react'
 
 const Searchbar = () => {
   return (
@@ -11,11 +11,11 @@ const Searchbar = () => {
       </span>
       <input
         type="text"
-        className={cn(styles.form_control, "form-control shadow-none")}
+        className={cn(styles.form_control, 'form-control shadow-none')}
         placeholder="Cari ID"
       />
     </div>
-  );
-};
+  )
+}
 
-export default Searchbar;
+export default Searchbar
