@@ -26,6 +26,12 @@ const DetailMetodePembayaran = lazy(() =>
 const Carousel = lazy(() =>
   import("pages").then((module) => ({ default: module.Carousel }))
 );
+const KategoriKolam = lazy(() =>
+  import("pages").then((module) => ({ default: module.KategoriKolam }))
+);
+const DetailKategoriKolam = lazy(() =>
+  import("pages").then((module) => ({ default: module.DetailKategoriKolam }))
+);
 
 function App() {
   return (
@@ -43,6 +49,11 @@ function App() {
               element={<DetailMetodePembayaran />}
             />
             <Route path="/carousel" element={<Carousel />} />
+            <Route path="/kategori-kolam" element={<KategoriKolam />} />
+            <Route
+              path="/kategori-kolam/:id"
+              element={<DetailKategoriKolam />}
+            />
           </Routes>
         </Layout>
       </Suspense>

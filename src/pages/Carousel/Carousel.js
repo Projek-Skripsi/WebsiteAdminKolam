@@ -5,7 +5,6 @@ import carousel from "mocks/carousel";
 import { Plus, Trash } from "@phosphor-icons/react";
 
 const Carousel = () => {
-  const [gambar, setGambar] = useState("");
   const [tambahCarousel, setTambahCarousel] = useState(false);
 
   return (
