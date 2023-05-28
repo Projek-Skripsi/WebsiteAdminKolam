@@ -23,6 +23,9 @@ const MetodePembayaran = lazy(() =>
 const DetailMetodePembayaran = lazy(() =>
   import("pages").then((module) => ({ default: module.DetailMetodePembayaran }))
 );
+const Carousel = lazy(() =>
+  import("pages").then((module) => ({ default: module.Carousel }))
+);
 
 function App() {
   return (
@@ -39,6 +42,7 @@ function App() {
               path="/metode-pembayaran/:id"
               element={<DetailMetodePembayaran />}
             />
+            <Route path="/carousel" element={<Carousel />} />
           </Routes>
         </Layout>
       </Suspense>
