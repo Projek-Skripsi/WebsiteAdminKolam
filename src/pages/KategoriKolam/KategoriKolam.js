@@ -13,7 +13,7 @@ const KategoriKolam = () => {
 
   return (
     <section className={styles.kategori_kolam}>
-      <div className="page_title">Carousel</div>
+      <div className="page_title">Kategori Kolam</div>
       {tambahKategori === false && (
         <button
           className={cn(styles.btn_tambah, 'btn btn-success')}
@@ -83,7 +83,7 @@ const KategoriKolam = () => {
             <tr key={index}>
               <td>{item.id}</td>
               <td>
-                <Link to={`/kategori-kolam/${item.id}`}>{item.kategori}</Link>
+                <Link to={`/kategori/${item.id}`}>{item.kategori}</Link>
               </td>
               <td>{item.hargaNormal}</td>
               <td>{item.hargaLibur}</td>

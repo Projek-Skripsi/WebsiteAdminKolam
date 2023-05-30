@@ -2,6 +2,18 @@
 @import "./common.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 
+@font-face {
+  font-family: "Gloss_And_Bloom";
+  src: local("Gloss_And_Bloom"),
+    url("../assets/Fonts/Gloss_And_Bloom.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"),
+    url("../assets/Fonts/Inter.ttf") format("truetype");
+}
+
 :root {
   --aqua: #1caafa;
   --dark-blue: #31373e;
@@ -9,6 +21,9 @@
   --green: #148e2f;
   --blue: #106af0;
   --red: #f06464;
+
+  --ff-title: 'Gloss_And_Bloom';
+  --ff-text: 'Inter'
 
   --fw-regular: 400;
   --fw-medium: 500;
@@ -23,4 +38,5 @@
   position: relative;
   width: calc(100% - 280px);
   padding: 56px 32px;
+  font-family: var(--ff-text), 'Times New Roman', Times, serif;
 }

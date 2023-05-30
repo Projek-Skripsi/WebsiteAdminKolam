@@ -1,0 +1,45 @@
+.LeftSection {
+    background-color: var(--blue);
+    color: white;
+}
+
+.Title {
+    font-family: 'Gloss_And_Bloom';
+    font-weight: var(--fw-medium);
+    margin: 25px 0 10px 0;
+    font-size: 32px;
+}
+
+.Slogan {
+    color: #DDDDDD;
+    width: 280px;
+    text-align: center;
+    margin: 0;
+}
+
+.FormTextInput {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 10px;
+    border: 1px solid #DDDDDD;
+    color: #666666;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+.BtnLogin {
+    background-color: var(--blue);
+    color: white;
+    font-weight: var(--fw-semibold);
+    padding: 20px;
+    border-radius: 50px;
+    margin: 20px 0 10px 0;
+}
+
+.ResetPass {
+    color: #666666;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+}

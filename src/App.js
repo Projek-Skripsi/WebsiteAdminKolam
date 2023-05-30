@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import 'styles/app.css'
+import './assets/Fonts/Gloss_And_Bloom.ttf'
+import './assets/Fonts/Inter.ttf'
 import { CONFIQ } from 'utils/utils'
 import { getAllDataAdmin, logout } from 'confiq/api'
 import Swal from 'sweetalert2'
+import Login from 'pages/Login/Login'
 import Sidebar from './components/Sidebar/Sidebar'
 import Home from './pages/Home/Home'
 import ProfilPerusahaan from './pages/ProfilPerusahaan/ProfilPerusahaan'
@@ -49,13 +52,13 @@ function App () {
     }
   }
 
-  // if (!auth) {
-  //   return (
-  //     <Routes>
-  //       <Route path="/*" element={<LoginUserPage onlogin={onLoginAdmin} />} />
-  //     </Routes>
-  //   )
-  // }
+  if (!auth) {
+    return (
+      <Routes>
+        <Route path="/*" element={<Login onlogin={onLoginAdmin} />} />
+      </Routes>
+    )
+  }
 
   return (
     <>

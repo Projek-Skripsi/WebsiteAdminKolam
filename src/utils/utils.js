@@ -2,4 +2,8 @@ const CONFIQ = {
   authAdmin: 'AUTH_ADMIN'
 }
 
-export { CONFIQ }
+const currencyFormat = (num) => {
+  return 'Rp' + Number(num).toLocaleString('id-ID')
+}
+
+export { CONFIQ, currencyFormat }
