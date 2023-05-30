@@ -32,10 +32,25 @@
   font-weight: var(--fw-medium);
   padding: 20px 0 20px 30px;
   transition: all 0.2s ease-in-out;
+  background-color: var(--dark-blue);
+}
+
+#sidebar .btnLogout{
+  color: red;
+  font-weight: var(--fw-medium);
+  padding: 20px 0 20px 30px;
+  text-align: left;
+  transition: all 0.2s ease-in-out;
+  background-color: var(--dark-blue);
 }
 
 #sidebar .btnMenu:hover {
   background-color: #434a51;
+}
+
+#sidebar .btnLogout:hover {
+  background-color: #434a51;
+  font-weight: var(--fw-semibold);
 }
 
 #sidebar .btnMenuActive {
