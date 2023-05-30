@@ -11,6 +11,9 @@ import Kolam from './pages/Kolam/Kolam'
 import DetailKolam from './pages/DetailKolam/DetailKolam'
 import MetodePembayaran from './pages/MetodePembayaran/MetodePembayaran'
 import DetailMetodePembayaran from './pages/DetailMetodePembayaran/DetailMetodePembayaran'
+import Carousel from './pages/Carousel/Carousel'
+import KategoriKolam from 'pages/KategoriKolam/KategoriKolam'
+import DetailKategoriKolam from 'pages/DetailKategoriKolam/DetailKategoriKolam'
 
 function App () {
   const [auth, setAuth] = useState(localStorage.getItem(CONFIQ.authAdmin) || null)
@@ -65,6 +68,9 @@ function App () {
           <Route path="/kolam/:id" element={<DetailKolam />} />
           <Route path="/pembayaran" element={<MetodePembayaran />} />
           <Route path="/pembayaran/:id" element={<DetailMetodePembayaran />} />
+          <Route path="/carousel" element={<Carousel />} />
+          <Route path="/kategori" element={<KategoriKolam />} />
+          <Route path="/kategori/:id" element={<DetailKategoriKolam />} />
         </Routes>
       </div>
     </>

@@ -1,12 +1,8 @@
 import React from 'react'
 import cn from 'classnames'
-import loadable from '@loadable/component'
 import styles from './Pengunjung.module.css'
 import pengunjung from 'mocks/pengunjung'
-
-const Searchbar = loadable(() =>
-  import('components').then((module) => module.Searchbar)
-)
+import Searchbar from 'components/Searchbar/Searchbar'
 
 const Pengunjung = () => {
   return (

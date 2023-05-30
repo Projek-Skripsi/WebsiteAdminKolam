@@ -85,7 +85,7 @@ const MetodePembayaran = () => {
             <tr key={index}>
               <td>{item.id}</td>
               <td>
-                <Link to={`/metode-pembayaran/${item.id}`}>{item.nama}</Link>
+                <Link to={`/pembayaran/${item.id}`}>{item.nama}</Link>
               </td>
               <td>{item.no_rek}</td>
               <td>{item.nama_pemilik}</td>

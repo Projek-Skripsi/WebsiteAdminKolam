@@ -5,10 +5,7 @@ import loadable from '@loadable/component'
 import kolam from 'mocks/kolam'
 import { Plus } from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
-
-const Switch = loadable(() =>
-  import('components').then((module) => module.Switch)
-)
+import Switch from 'components/Switch/Switch'
 
 const Kolam = () => {
   const [namaKolam, setNamaKolam] = useState('')
