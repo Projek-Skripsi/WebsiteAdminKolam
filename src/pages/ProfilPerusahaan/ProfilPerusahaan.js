@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getDataPerusahaan, putDataPerusahaan } from 'confiq/api'
 import Loading from 'components/Loading/Loading'
+import Swal from 'sweetalert2'
 import cn from 'classnames'
 import styles from './ProfilPerusahaan.module.css'
 
@@ -49,6 +50,7 @@ const ProfilPerusahaan = () => {
     setLoading(true)
     await putDataPerusahaan({ ...payload })
     await getPerusahaan()
+    Swal.fire('Berhasil', 'Data berhasil diperbarui', 'success')
     setReadOnly(!readOnly)
     setLoading(false)
   }
@@ -57,7 +59,7 @@ const ProfilPerusahaan = () => {
     <section>
       <Loading visible={loading} />
       <div className="page_title">Profil Perusahaan</div>
-      <form className={styles.form}>
+      <form onSubmit={simpanData} className={styles.form}>
         {/* Nama Perusahaan */}
         <div class={cn(styles.input_group, 'row justify-content-between')}>
           <div class="col-auto">
@@ -220,7 +222,7 @@ const ProfilPerusahaan = () => {
         <button hidden={!readOnly} type='button' className={cn(styles.btn_edit, 'btn btn-outline-primary')} onClick={() => setReadOnly(!readOnly) }>
           Edit
         </button>
-        <button hidden={readOnly} type='submit' className={cn(styles.btn_edit, 'btn btn-outline-primary')} onClick={simpanData} >
+        <button hidden={readOnly} type='submit' className={cn(styles.btn_edit, 'btn btn-outline-primary')} >
           Simpan
         </button>
       </form>

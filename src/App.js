@@ -68,12 +68,12 @@ function App () {
           <Route path="/*" element={<Home />} />
           <Route path="/profil" element={<ProfilPerusahaan />} />
           <Route path="/kolam" element={<Kolam />} />
-          <Route path="/kolam/:id" element={<DetailKolam />} />
+          <Route path="/kolam/:IdKolam" element={<DetailKolam />} />
           <Route path="/pembayaran" element={<MetodePembayaran />} />
-          <Route path="/pembayaran/:id" element={<DetailMetodePembayaran />} />
+          <Route path="/pembayaran/:IdPembayaran" element={<DetailMetodePembayaran />} />
           <Route path="/carousel" element={<Carousel />} />
           <Route path="/kategori" element={<KategoriKolam />} />
-          <Route path="/kategori/:id" element={<DetailKategoriKolam />} />
+          <Route path="/kategori/:IdKategori" element={<DetailKategoriKolam />} />
         </Routes>
       </div>
     </>

@@ -92,3 +92,51 @@ export async function getDataPerusahaan () {
 export async function putDataPerusahaan ({ NamaPerusahaan, Alamat, Deskripsi, JamBuka, JamTutup, Email, NoWA, Instagram }) {
   await api.put('/perusahaan', { NamaPerusahaan, Alamat, Deskripsi, JamBuka, JamTutup, Email, NoWA, Instagram })
 }
+
+export async function getAllDataKategoriKolam () {
+  try {
+    const response = await api.get('/kategori')
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    alert(error.code, error.message)
+  }
+}
+
+export async function getDataKategoriKolam (IdKategori) {
+  try {
+    const response = await api.get(`/kategori/${IdKategori}`)
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    alert(error.code, error.message)
+  }
+}
+
+export async function putDataKategori ({ IdKategori, NamaKategori, HargaNormal, HargaLibur }) {
+  await api.put(`/kategori/${IdKategori}`, { NamaKategori, HargaNormal, HargaLibur })
+}
+
+export async function addKategori (data) {
+  await api.post('/kategori', data)
+}
+
+export async function getDataKolam () {
+  try {
+    const response = await api.get('/kolam')
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    alert(error.code, error.message)
+  }
+}
+
+export async function getDataCarousel () {
+  try {
+    const response = await api.get('/carousel')
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    alert(error.code, error.message)
+  }
+}
