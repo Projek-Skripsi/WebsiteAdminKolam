@@ -9,7 +9,7 @@ import { Plus } from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
 
 const KategoriKolam = () => {
-  const [loading, setloading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [tambahKategori, setTambahKategori] = useState(false)
   const [data, setData] = useState([])
   const [namaKategori, setNamaKategori] = useState('')
@@ -22,9 +22,9 @@ const KategoriKolam = () => {
   }
 
   useEffect(() => {
-    setloading(true)
+    setLoading(true)
     getAllKategoriKolam()
-    setloading(false)
+    setLoading(false)
   }, [])
 
   function btnBatalHandler () {
@@ -41,11 +41,11 @@ const KategoriKolam = () => {
       HargaNormal: hargaNormal,
       HargaLibur: hargaLibur
     }
-    setloading(true)
+    setLoading(true)
     await addKategori(payload)
-    await Swal.fire('Berhasil', 'Data berhasil diperbarui', 'success')
+    await Swal.fire('Berhasil', 'Data berhasil ditambah', 'success')
     window.location.reload()
-    setloading(false)
+    setLoading(false)
   }
 
   return (

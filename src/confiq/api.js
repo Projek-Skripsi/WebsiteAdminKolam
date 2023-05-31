@@ -121,7 +121,7 @@ export async function addKategori (data) {
   await api.post('/kategori', data)
 }
 
-export async function getDataKolam () {
+export async function getAllDataKolam () {
   try {
     const response = await api.get('/kolam')
     const data = await response.data.payload
@@ -129,6 +129,70 @@ export async function getDataKolam () {
   } catch (error) {
     alert(error.code, error.message)
   }
+}
+
+export async function getDataKolam (IdKolam) {
+  try {
+    const response = await api.get(`/kolam/${IdKolam}`)
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    alert(error.code, error.message)
+  }
+}
+
+export async function addKolam (file, data) {
+  const imagePath = `Kolam/${+new Date()}${file.name}`
+  const storageRef = refImg(storage, imagePath)
+  return (
+    uploadBytes(storageRef, file)
+      .then(() => {
+        getDownloadURL(refImg(storage, imagePath))
+          .then(async (url) => {
+            await api.post('/kolam', { ...data, UrlGambar: url })
+          })
+          .catch((error) => {
+            Swal.fire(error.message)
+          })
+      })
+      .then(() => {
+        return { error: false }
+      }).catch((error) => {
+        Swal.fire(error.message)
+        return { error: true }
+      })
+  )
+}
+
+export async function putDataKolam ({ IdKolam, Judul, IdKategori, UrlGambar, Status }) {
+  await api.put(`/kolam/${IdKolam}`, { Judul, IdKategori, UrlGambar, Status })
+}
+
+export function uploadGambarKolam (file, IdKolam) {
+  const imagePath = `Kolam/${+new Date()}${file.name}`
+  const storageRef = refImg(storage, imagePath)
+  return (
+    uploadBytes(storageRef, file)
+      .then(() => {
+        getDownloadURL(refImg(storage, imagePath))
+          .then(async (url) => {
+            await putDataKolam({ IdKolam, UrlGambar: url })
+          })
+          .catch((error) => {
+            Swal.fire(error.message)
+          })
+      })
+      .then(() => {
+        return { error: false }
+      }).catch((error) => {
+        Swal.fire(error.message)
+        return { error: true }
+      })
+  )
+}
+
+export async function deleteKolam (IdKolam) {
+  await api.delete(`/kolam/${IdKolam}`)
 }
 
 export async function getDataCarousel () {
