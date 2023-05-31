@@ -78,3 +78,17 @@ export async function getAllDataAdmin () {
     alert(error.code, error.message)
   }
 }
+
+export async function getDataPerusahaan () {
+  try {
+    const response = await api.get('/perusahaan')
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    alert(error.code, error.message)
+  }
+}
+
+export async function putDataPerusahaan ({ NamaPerusahaan, Alamat, Deskripsi, JamBuka, JamTutup, Email, NoWA, Instagram }) {
+  await api.put('/perusahaan', { NamaPerusahaan, Alamat, Deskripsi, JamBuka, JamTutup, Email, NoWA, Instagram })
+}
