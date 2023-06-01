@@ -21,8 +21,8 @@ export default function Pengunjung () {
           <thead className={styles.thead}>
             <tr>
               <th scope="col">Id Pemesanan</th>
-              <th scope="col">Jumlah Tiket Anak</th>
-              <th scope="col">Jumlah Tiket Orang Dewasa</th>
+              <th scope="col">Tanggal Pemesanan</th>
+              <th scope="col">Jumlah Tiket</th>
               <th scope="col">Status</th>
               <th scope="col"></th>
             </tr>

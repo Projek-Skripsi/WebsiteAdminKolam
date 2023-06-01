@@ -16,6 +16,7 @@
 
 .tableContainer::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 .tableContainer::-webkit-scrollbar-thumb {

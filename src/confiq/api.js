@@ -259,3 +259,13 @@ export async function addCarousel (file) {
 export async function deleteCarousel (IdCarousel) {
   await api.delete(`/carousel/${IdCarousel}`)
 }
+
+export async function getAllDataPemesanan () {
+  try {
+    const response = await api.get('/pemesanan')
+    const data = await response.data.payload.pemesanan
+    return { data }
+  } catch (error) {
+    alert(error.code, error.message)
+  }
+}
