@@ -1,57 +1,47 @@
-import React from 'react'
-import cn from 'classnames'
+import React, { useState } from 'react'
 import styles from './Pengunjung.module.css'
 import pengunjung from 'mocks/pengunjung'
 import Searchbar from 'components/Searchbar/Searchbar'
 
-const Pengunjung = () => {
+export default function Pengunjung () {
+  const [keyword, setkeyword] = useState('')
+
+  const searchId = pengunjung.filter((order) => { return order.id.toString().toLowerCase().includes(keyword.toLocaleLowerCase()) })
+
   return (
     <section id={styles.pengunjung}>
-      <div className="d-flex justify-content-between align-items-start w-100 mb-4">
+      <div className="d-flex justify-content-between align-items-center w-100 mb-4">
         <div className="group_title">Pengunjung Hari Ini</div>
-        <Searchbar />
+        <Searchbar keyword={keyword} keywordChange={setkeyword} />
       </div>
 
       {/* Table Pengunjung Hari Ini */}
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Jumlah Tiket Anak</th>
-            <th scope="col">Jumlah Tiket Orang Dewasa</th>
-            <th scope="col">Status</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {pengunjung.map((item) => (
+      <div className={styles.tableContainer}>
+        <table className='table text-center align-middle' >
+          <thead className={styles.thead}>
             <tr>
-              <td>{item.id}</td>
-              <td>{item.jumlah_tiket_anak}</td>
-              <td>{item.jumlah_tiket_dewasa}</td>
-              <td>{item.status}</td>
-              <td>
-                <button
-                  type="button"
-                  className={cn([
-                    'btn w-100',
-                    {
-                      'btn-outline-success': item.status === 'Berhasil',
-                      'btn-outline-danger':
-                        item.status === 'Menunggu Pembayaran' ||
-                        item.status === 'Menunggu Konfirmasi'
-                    }
-                  ])}
-                >
-                  {item.tombol}
-                </button>
-              </td>
+              <th scope="col">Id Pemesanan</th>
+              <th scope="col">Jumlah Tiket Anak</th>
+              <th scope="col">Jumlah Tiket Orang Dewasa</th>
+              <th scope="col">Status</th>
+              <th scope="col"></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody >
+            {searchId.map((item) => (
+              <tr>
+                <td>{item.id}</td>
+                <td>{item.jumlah_tiket_anak}</td>
+                <td>{item.jumlah_tiket_dewasa}</td>
+                <td>{item.status}</td>
+                <td>
+                  {item.status === 'Berhasil' ? <button type='button' className='btn w-100 btn-outline-success'>Selesai</button> : <button type='button' className='btn w-100 btn-outline-danger'>Batal</button> }
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   )
 }
-
-export default Pengunjung

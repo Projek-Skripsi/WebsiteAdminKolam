@@ -1,8 +1,9 @@
 import React from 'react'
 import styles from './MenungguPembayaran.module.css'
+import { currencyFormat } from 'utils/utils'
 import menungguPembayaran from 'mocks/menunggupembayaran'
 
-const MenungguPembayaran = () => {
+export default function MenungguPembayaran () {
   const clonedData = Array(4).fill(menungguPembayaran).flat()
   const count = clonedData.length
 
@@ -14,32 +15,32 @@ const MenungguPembayaran = () => {
       </div>
 
       {/* Table Menunggu Pembayaran */}
-      <table class="table table-bordered align-middle table-responsive">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Tanggal berenang</th>
-            <th scope="col">Jumlah pembayaran</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {clonedData.map((item) => (
+      <div className={styles.tableContainer}>
+        <table class="table text-center align-middle table-responsive">
+          <thead className={styles.thead}>
             <tr>
-              <td>{item.id}</td>
-              <td>{item.tanggal_berenang}</td>
-              <td>{item.jumlah_bayar}</td>
-              <td>
-                <button className="btn btn-outline-danger w-100 mt-2">
-                  Batalkan Pemesanan
-                </button>
-              </td>
+              <th scope="col">Id Pemesanan</th>
+              <th scope="col">Tanggal berenang</th>
+              <th scope="col">Total</th>
+              <th scope="col">Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {clonedData.map((item) => (
+              <tr>
+                <td>{item.id}</td>
+                <td>{item.tanggal_berenang}</td>
+                <td>{currencyFormat(item.jumlah_bayar)}</td>
+                <td>
+                  <button className="btn btn-outline-danger">
+                    Batalkan Pemesanan
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   )
 }
-
-export default MenungguPembayaran

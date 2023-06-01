@@ -1,9 +1,9 @@
 import React from 'react'
-import cn from 'classnames'
 import konfirmasi from 'mocks/konfirmasi'
 import styles from './KonfirmasiPembayaran.module.css'
+import { currencyFormat } from 'utils/utils'
 
-const KonfirmasiPembayaran = () => {
+export default function KonfirmasiPembayaran () {
   const clonedKonfirmasi = Array(4).fill(konfirmasi).flat()
   const count = clonedKonfirmasi.length
 
@@ -15,41 +15,51 @@ const KonfirmasiPembayaran = () => {
       </div>
 
       {/* Table Konfirmasi Pembayaran */}
-      <table class="table table-bordered align-middle table-responsive">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Tanggal berenang</th>
-            <th scope="col">Jumlah pembayaran</th>
-            <th scope="col">Metode pembayaran</th>
-            <th scope="col">Bukti pembayaran</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {clonedKonfirmasi.map((item) => (
+      <div className={styles.tableContainer}>
+        <table class="table text-center align-middle table-responsive">
+          <thead className={styles.thead}>
             <tr>
-              <td>{item.id}</td>
-              <td>{item.tanggal_berenang}</td>
-              <td>{item.jumlah_bayar}</td>
-              <td>{item.metode_pembayaran}</td>
-              <td>
-                <img src={item.bukti_pembayaran} alt="bukti_pembayaran" />
-              </td>
-              <td>
-                <button className="btn btn-outline-success w-100">
-                  Terima
-                </button>
-                <button className="btn btn-outline-danger w-100 mt-2">
-                  Tolak
-                </button>
-              </td>
+              <th scope="col">Id Pemesanan</th>
+              <th scope="col">Tanggal berenang</th>
+              <th scope="col">Total</th>
+              <th scope="col">Metode pembayaran</th>
+              <th scope="col">Bukti pembayaran</th>
+              <th scope="col">Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {clonedKonfirmasi.map((item, index) => (
+              <tr key={index}>
+                <td>{item.id}</td>
+                <td>{item.tanggal_berenang}</td>
+                <td>{currencyFormat(item.jumlah_bayar)}</td>
+                <td>{item.metode_pembayaran}</td>
+                <td>
+                  <img src={item.bukti_pembayaran} style={{ cursor: 'pointer' }} width={100} height={100} alt="bukti_pembayaran" data-bs-toggle='modal' data-bs-target={`#showImg${item.id}`} />
+                  {/* MODAL SHOW IMG */}
+                  <div class="modal fade" id={`showImg${item.id}`} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                          <img src={item.bukti_pembayaran} alt="bukti_pembayaran" />
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div className='d-flex flex-column'>
+                    <button className="btn btn-outline-success mb-2">
+                      Terima
+                    </button>
+                    <button className="btn btn-outline-danger">
+                      Tolak
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   )
 }
-
-export default KonfirmasiPembayaran

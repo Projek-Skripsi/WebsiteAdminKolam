@@ -5,7 +5,7 @@ import Pengunjung from './Pengunjung/Pengunjung'
 import KonfirmasiPembayaran from './KonfirmasiPembayaran/KonfirmasiPembayaran'
 import MenungguPembayaran from './MenungguPembayaran/MenungguPembayaran'
 
-const Home = () => {
+export default function Home () {
   return (
     <>
       <Laporan />
@@ -15,5 +15,3 @@ const Home = () => {
     </>
   )
 }
-
-export default Home

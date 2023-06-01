@@ -3,7 +3,7 @@ import cn from 'classnames'
 import styles from './Searchbar.module.css'
 import { MagnifyingGlass } from '@phosphor-icons/react'
 
-const Searchbar = () => {
+const Searchbar = ({ keyword, keywordChange }) => {
   return (
     <div className={styles.form_group}>
       <span className={styles.icon}>
@@ -13,6 +13,8 @@ const Searchbar = () => {
         type="text"
         className={cn(styles.form_control, 'form-control shadow-none')}
         placeholder="Cari ID"
+        value={keyword}
+        onChange={(e) => keywordChange(e.target.value)}
       />
     </div>
   )
