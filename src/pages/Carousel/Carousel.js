@@ -1,14 +1,65 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { getAllDataCarousel, addCarousel, deleteCarousel } from 'confiq/api'
+import Loading from 'components/Loading/Loading'
+import Swal from 'sweetalert2'
 import cn from 'classnames'
 import styles from './Carousel.module.css'
-import carousel from 'mocks/carousel'
 import { Plus, Trash } from '@phosphor-icons/react'
 
 const Carousel = () => {
+  const [loading, setLoading] = useState(false)
   const [tambahCarousel, setTambahCarousel] = useState(false)
+  const [data, setData] = useState([])
+  const [gambar, setGambar] = useState()
+
+  async function getAllCarousel () {
+    const { data } = await getAllDataCarousel()
+    setData(data)
+  }
+
+  useEffect(() => {
+    setLoading(true)
+    getAllCarousel()
+    setLoading(false)
+  }, [])
+
+  function btnBatalHandler () {
+    setTambahCarousel(!tambahCarousel)
+    setGambar('')
+  }
+
+  async function postCarousel (event) {
+    event.preventDefault()
+    setLoading(true)
+    await addCarousel(gambar)
+    await Swal.fire('Berhasil', 'Data berhasil ditambah', 'success')
+    window.location.reload()
+    setLoading(false)
+  }
+
+  function hapusData (IdCarousel) {
+    Swal.fire({
+      title: 'Perhatian',
+      text: 'Yakin ingin menghapus gambar carousel ini?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#106AF0',
+      cancelButtonText: 'Batal',
+      confirmButtonText: 'Yakin'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        setLoading(true)
+        await deleteCarousel(IdCarousel)
+        await getAllCarousel()
+        Swal.fire('Berhasil', 'Gambar carousel berhasil dihapus', 'success')
+        setLoading(false)
+      }
+    })
+  }
 
   return (
     <section id={styles.carousel}>
+      <Loading visible={loading} />
       <div className="page_title">Carousel</div>
       {tambahCarousel === false && (
         <button
@@ -23,49 +74,41 @@ const Carousel = () => {
       {tambahCarousel && (
         <section id={styles.tambah_carousel}>
           <h5>Tambah Carousel</h5>
-          <div className="row align-items-center mb-3">
+          <form onSubmit={postCarousel} className="row align-items-center mb-3">
             <div className="col-auto">
-              <label htmlFor="gambar" className="col-form-label">
-                Gambar
-              </label>
-
+              <label htmlFor="gambar" className="col-form-label">Gambar</label>
               <div className="input-group">
-                <input type="file" className="form-control" id="gambar" />
+                <input required type="file" accept='image/*' onChange={(e) => setGambar(e.target.files[0])} className="form-control" id="gambar" />
               </div>
             </div>
-          </div>
-          <div className="d-flex gap-2 align-items-center w-100 justify-content-end">
-            <button
-              className={cn(styles.btn_batal, 'btn btn-outline-secondary')}
-              onClick={() => setTambahCarousel(false)}
-            >
-              Batal
-            </button>
-            <button className={cn(styles.btn_simpan, 'btn')}>Simpan</button>
-          </div>
+            <div className="d-flex gap-2 align-items-center w-100 justify-content-end">
+              <button type='button' className={cn(styles.btn_batal, 'btn btn-outline-secondary')} onClick={btnBatalHandler} >
+                Batal
+              </button>
+              <button type='submit' className={cn(styles.btn_simpan, 'btn')}>Simpan</button>
+            </div>
+          </form>
         </section>
       )}
 
       {/* Table Carousel */}
-      <table className="table table-bordered align-middle table-responsive">
+      <table className="table text-center table-bordered align-middle table-responsive">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Gambar</th>
+            <th scope="col">Id Carousel</th>
+            <th scope="col">Gambar Carousel</th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-          {carousel.map((item, index) => (
-            <tr key={index}>
-              <td>{item.id}</td>
+          {data.map((item) => (
+            <tr key={item.IdCarousel}>
+              <td>{item.IdCarousel}</td>
               <td>
-                <img src={item.gambar} alt="carousel" />
+                <img src={item.UrlGambar} width={300} height={120} alt="carousel" />
               </td>
-              <td className="text-center">
-                <button className="btn btn-outline-danger">
-                  <Trash size={32} />
-                </button>
+              <td>
+                <button className="btn btn-outline-danger" onClick={() => hapusData(item.IdCarousel)}><Trash size={32} /></button>
               </td>
             </tr>
           ))}

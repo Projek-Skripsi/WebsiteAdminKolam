@@ -195,7 +195,35 @@ export async function deleteKolam (IdKolam) {
   await api.delete(`/kolam/${IdKolam}`)
 }
 
-export async function getDataCarousel () {
+export async function getAllDataPembayaran () {
+  try {
+    const response = await api.get('/pembayaran')
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    alert(error.code, error.message)
+  }
+}
+
+export async function getDataPembayaran (IdPembayaran) {
+  try {
+    const response = await api.get(`/pembayaran/${IdPembayaran}`)
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    alert(error.code, error.message)
+  }
+}
+
+export async function putDataPembayaran ({ IdPembayaran, NamaPembayaran, NoRekening, An, Status }) {
+  await api.put(`/pembayaran/${IdPembayaran}`, { NamaPembayaran, NoRekening, An, Status })
+}
+
+export async function addPembayaran (data) {
+  await api.post('/pembayaran', data)
+}
+
+export async function getAllDataCarousel () {
   try {
     const response = await api.get('/carousel')
     const data = await response.data.payload
@@ -203,4 +231,31 @@ export async function getDataCarousel () {
   } catch (error) {
     alert(error.code, error.message)
   }
+}
+
+export async function addCarousel (file) {
+  const imagePath = `Carousel/${+new Date()}${file.name}`
+  const storageRef = refImg(storage, imagePath)
+  return (
+    uploadBytes(storageRef, file)
+      .then(() => {
+        getDownloadURL(refImg(storage, imagePath))
+          .then(async (url) => {
+            await api.post('/carousel', { UrlGambar: url })
+          })
+          .catch((error) => {
+            Swal.fire(error.message)
+          })
+      })
+      .then(() => {
+        return { error: false }
+      }).catch((error) => {
+        Swal.fire(error.message)
+        return { error: true }
+      })
+  )
+}
+
+export async function deleteCarousel (IdCarousel) {
+  await api.delete(`/carousel/${IdCarousel}`)
 }
