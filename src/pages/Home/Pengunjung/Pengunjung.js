@@ -1,12 +1,37 @@
 import React, { useState } from 'react'
 import styles from './Pengunjung.module.css'
-import pengunjung from 'mocks/pengunjung'
+import DetailRiwayat from 'components/DetailRiwayat/DetailRiwayat'
+import moment from 'moment'
 import Searchbar from 'components/Searchbar/Searchbar'
 
-export default function Pengunjung () {
+export default function Pengunjung ({ data, changeStatus }) {
   const [keyword, setkeyword] = useState('')
 
-  const searchId = pengunjung.filter((order) => { return order.id.toString().toLowerCase().includes(keyword.toLocaleLowerCase()) })
+  const searchId = data.filter((order) => { return order.IdPemesanan.toString().toLowerCase().includes(keyword.toLocaleLowerCase()) && order.Status !== 'Selesai' })
+
+  function EmptyData () {
+    return (
+      <tr>
+        <td colSpan={5} className='text-secondary' >Data tidak ditemukan</td>
+      </tr>
+    )
+  }
+
+  function ShowData () {
+    return (
+      searchId.map((item) => (
+        <tr key={item.IdPemesanan}>
+          <td><DetailRiwayat item={item} /></td>
+          <td>{moment(item.TanggalPemesanan).format('DD MMM YYYY (hh:mm:ss)')}</td>
+          <td>{item.TotalQty}</td>
+          <td>{item.Status}</td>
+          <td>
+            {item.Status === 'Berhasil' ? <button type='button' className='btn w-100 btn-outline-success' onClick={() => changeStatus(item.IdPemesanan, 'Selesai')}>Selesai</button> : <button type='button' className='btn w-100 btn-outline-danger' onClick={() => changeStatus(item.IdPemesanan, 'Batal')}>Batal</button> }
+          </td>
+        </tr>
+      ))
+    )
+  }
 
   return (
     <section id={styles.pengunjung}>
@@ -28,17 +53,7 @@ export default function Pengunjung () {
             </tr>
           </thead>
           <tbody >
-            {searchId.map((item) => (
-              <tr>
-                <td>{item.id}</td>
-                <td>{item.jumlah_tiket_anak}</td>
-                <td>{item.jumlah_tiket_dewasa}</td>
-                <td>{item.status}</td>
-                <td>
-                  {item.status === 'Berhasil' ? <button type='button' className='btn w-100 btn-outline-success'>Selesai</button> : <button type='button' className='btn w-100 btn-outline-danger'>Batal</button> }
-                </td>
-              </tr>
-            ))}
+            {searchId.length !== 0 ? <ShowData /> : <EmptyData /> }
           </tbody>
         </table>
       </div>

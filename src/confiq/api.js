@@ -269,3 +269,11 @@ export async function getAllDataPemesanan () {
     alert(error.code, error.message)
   }
 }
+
+export async function editDataPemesanan ({ IdPemesanan, Status }) {
+  await api.put(`/pemesanan/${IdPemesanan}`, { Status })
+}
+
+export async function deleteKonfirmasiPembayaran (IdPemesanan) {
+  await api.delete(`/konfirmasi/${IdPemesanan}`)
+}

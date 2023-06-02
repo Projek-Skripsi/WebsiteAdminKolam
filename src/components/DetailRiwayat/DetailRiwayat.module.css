@@ -1,0 +1,58 @@
+.MainId {
+    margin: 0;
+    margin-left: 50%;
+    transform: translate(-50%);
+    color: var(--blue);
+    text-decoration: underline;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.Label {
+    color: black;
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+
+.ModalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: 2px dashed #DDDDDD;
+    margin-bottom: 15px;
+}
+
+.Id {
+    color: #666666;
+    font-size: 18px;
+    font-weight: var(--fw-semibold);
+}
+
+.ModalTitle {
+    margin: 0;
+    color: #666666;
+    font-size: 16px;
+}
+
+.ModalText {
+    margin: 0;
+    color: black;
+    font-size: 16px;
+    font-weight: var(--fw-medium);
+}
+
+.ModalFooterText {
+    margin: 0;
+    color: black;
+    font-size: 18px;
+    font-weight: var(--fw-semibold);
+}
+
+.ModalFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+    border-top: 2px dashed #DDDDDD;
+}

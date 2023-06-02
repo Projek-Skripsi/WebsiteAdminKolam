@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { getAllDataPemesanan } from 'confiq/api'
+import { getAllDataPemesanan, editDataPemesanan } from 'confiq/api'
 import Loading from 'components/Loading/Loading'
 import moment from 'moment/moment'
+import Swal from 'sweetalert2'
 import Laporan from './Laporan/Laporan'
 import Pengunjung from './Pengunjung/Pengunjung'
 import KonfirmasiPembayaran from './KonfirmasiPembayaran/KonfirmasiPembayaran'
@@ -29,13 +30,24 @@ export default function Home () {
     setLoading(false)
   }, [])
 
+  async function changeStatus (IdPemesanan, newStatus) {
+    await editDataPemesanan({ IdPemesanan, Status: newStatus })
+    await getAllPemesanan()
+    await Swal.fire({
+      showConfirmButton: false,
+      icon: 'success',
+      title: 'Perubahan disimpan',
+      timer: 1000
+    })
+  }
+
   return (
     <>
       <Loading visible={loading} />
       <Laporan allOrder={allPemesanan.length} pendapatan={dataPengunjungSection} totalTransaksi={dataPengunjungSection.length} />
-      <Pengunjung data={dataPengunjungSection} />
-      <KonfirmasiPembayaran data={dataKonfirmasiSection} />
-      <MenungguPembayaran data={dataTungguBayarSection} />
+      <Pengunjung changeStatus={changeStatus} data={dataPengunjungSection} />
+      <KonfirmasiPembayaran changeStatus={changeStatus} data={dataKonfirmasiSection} />
+      <MenungguPembayaran changeStatus={changeStatus} data={dataTungguBayarSection} />
     </>
   )
 }
