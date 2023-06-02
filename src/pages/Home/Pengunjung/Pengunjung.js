@@ -5,7 +5,7 @@ import moment from 'moment'
 import Searchbar from 'components/Searchbar/Searchbar'
 
 export default function Pengunjung ({ data, changeStatus }) {
-  const [keyword, setkeyword] = useState('')
+  const [keyword, setKeyword] = useState('')
 
   const searchId = data.filter((order) => { return order.IdPemesanan.toString().toLowerCase().includes(keyword.toLocaleLowerCase()) && order.Status !== 'Selesai' })
 
@@ -37,7 +37,7 @@ export default function Pengunjung ({ data, changeStatus }) {
     <section id={styles.pengunjung}>
       <div className="d-flex justify-content-between align-items-center w-100 mb-4">
         <div className="group_title">Pengunjung Hari Ini</div>
-        <Searchbar keyword={keyword} keywordChange={setkeyword} />
+        <Searchbar keyword={keyword} keywordChange={setKeyword} />
       </div>
 
       {/* Table Pengunjung Hari Ini */}

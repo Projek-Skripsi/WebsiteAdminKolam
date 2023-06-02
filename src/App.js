@@ -17,6 +17,8 @@ import DetailMetodePembayaran from './pages/DetailMetodePembayaran/DetailMetodeP
 import Carousel from './pages/Carousel/Carousel'
 import KategoriKolam from 'pages/KategoriKolam/KategoriKolam'
 import DetailKategoriKolam from 'pages/DetailKategoriKolam/DetailKategoriKolam'
+import RiwayatPemesanan from 'pages/RiwayatPemesanan/RiwayatPemesanan'
+import Laporan from 'pages/Laporan/Laporan'
 
 function App () {
   const [auth, setAuth] = useState(localStorage.getItem(CONFIQ.authAdmin) || null)
@@ -74,6 +76,8 @@ function App () {
           <Route path="/carousel" element={<Carousel />} />
           <Route path="/kategori" element={<KategoriKolam />} />
           <Route path="/kategori/:IdKategori" element={<DetailKategoriKolam />} />
+          <Route path="/riwayat" element={<RiwayatPemesanan />} />
+          <Route path="/riwayat/:periode" element={<Laporan />} />
         </Routes>
       </div>
     </>
