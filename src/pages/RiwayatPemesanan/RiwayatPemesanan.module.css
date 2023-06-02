@@ -1,0 +1,24 @@
+.buat_laporan {
+  padding: 24px 16px;
+  background-color: #f8f8f8;
+  border-radius: 16px;
+}
+
+.btn_laporan {
+  background-color: var(--aqua);
+  color: #fff;
+}
+
+.btn_laporan:hover {
+  color: #ffffff;
+  background-color: #1498e4;
+}
+
+.label_filter {
+  color: #444;
+}
+
+.filter_select {
+  border-radius: 40px;
+  padding: 12px 20px;
+}

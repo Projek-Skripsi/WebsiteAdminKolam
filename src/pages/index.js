@@ -7,3 +7,4 @@ export { default as DetailMetodePembayaran } from "./DetailMetodePembayaran/Deta
 export { default as Carousel } from "./Carousel/Carousel";
 export { default as KategoriKolam } from "./KategoriKolam/KategoriKolam";
 export { default as DetailKategoriKolam } from "./DetailKategoriKolam/DetailKategoriKolam";
+export { default as RiwayatPemesanan } from "./RiwayatPemesanan/RiwayatPemesanan";

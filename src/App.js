@@ -32,6 +32,9 @@ const KategoriKolam = lazy(() =>
 const DetailKategoriKolam = lazy(() =>
   import("pages").then((module) => ({ default: module.DetailKategoriKolam }))
 );
+const RiwayatPemesanan = lazy(() =>
+  import("pages").then((module) => ({ default: module.RiwayatPemesanan }))
+);
 
 function App() {
   return (
@@ -54,6 +57,7 @@ function App() {
               path="/kategori-kolam/:id"
               element={<DetailKategoriKolam />}
             />
+            <Route path="/riwayat-pemesanan" element={<RiwayatPemesanan />} />
           </Routes>
         </Layout>
       </Suspense>
