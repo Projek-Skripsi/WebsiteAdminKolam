@@ -277,3 +277,23 @@ export async function editDataPemesanan ({ IdPemesanan, Status }) {
 export async function deleteKonfirmasiPembayaran (IdPemesanan) {
   await api.delete(`/konfirmasi/${IdPemesanan}`)
 }
+
+export async function getDataTabelLaporan ({ periodeAwal, periodeAkhir }) {
+  try {
+    const response = await api.get(`/laporan/table/${periodeAwal}/${periodeAkhir}`)
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    alert(error.code, error.message)
+  }
+}
+
+export async function getDataQtyKategori ({ periodeAwal, periodeAkhir }) {
+  try {
+    const response = await api.get(`/laporan/qtykategori/${periodeAwal}/${periodeAkhir}`)
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    alert(error.code, error.message)
+  }
+}
