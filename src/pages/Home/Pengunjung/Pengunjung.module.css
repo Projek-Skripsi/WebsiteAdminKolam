@@ -1,3 +1,30 @@
 #pengunjung {
   margin-top: 40px;
 }
+
+.tableContainer {
+  max-height: 317px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+.tableContainer::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background-color: #c7c7c7;
+  border-radius: 100px;
+}
+
+.tableContainer::-webkit-scrollbar-thumb:hover {
+  background-color: #a9a9a9;
+  width: 10px;
+}

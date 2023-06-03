@@ -1,0 +1,22 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  width: fit-content;
+}
+
+.input_group {
+  width: 640px;
+}
+
+.input {
+  width: 360px;
+}
+
+.button_group {
+  display: flex;
+  gap: 8px;
+  flex-direction: row;
+  width: 100%;
+}

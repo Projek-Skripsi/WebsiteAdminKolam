@@ -1,23 +1,30 @@
-#menunggu_pembayaran {
-  margin-top: 40px;
+.buat_laporan {
+  padding: 24px 16px;
+  background-color: #f8f8f8;
+  border-radius: 16px;
 }
 
-.count {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.btn_laporan {
   background-color: var(--aqua);
-  padding: 8px;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  font-size: 14px;
   color: #fff;
-  font-weight: var(--fw-semibold);
+}
+
+.btn_laporan:hover {
+  color: #ffffff;
+  background-color: #1498e4;
+}
+
+.label_filter {
+  color: #444;
+}
+
+.filter_select {
+  border-radius: 40px;
+  padding: 12px 20px;
 }
 
 .tableContainer {
-  max-height: 316px;
+  max-height: 450px;
   overflow-y: scroll;
   scroll-behavior: smooth;
 }

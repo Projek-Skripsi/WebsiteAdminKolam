@@ -1,61 +1,62 @@
-import React from "react";
-import cn from "classnames";
-import loadable from "@loadable/component";
-import styles from "./Pengunjung.module.css";
-import pengunjung from "mocks/pengunjung";
+import React, { useState } from 'react'
+import styles from './Pengunjung.module.css'
+import DetailRiwayat from 'components/DetailRiwayat/DetailRiwayat'
+import moment from 'moment'
+import Searchbar from 'components/Searchbar/Searchbar'
 
-const Searchbar = loadable(() =>
-  import("components").then((module) => module.Searchbar)
-);
+export default function Pengunjung ({ data, changeStatus }) {
+  const [keyword, setKeyword] = useState('')
 
-const Pengunjung = () => {
+  const searchId = data.filter((order) => { return order.IdPemesanan.toString().toLowerCase().includes(keyword.toLocaleLowerCase()) && order.Status !== 'Selesai' })
+
+  function EmptyData () {
+    return (
+      <tr>
+        <td colSpan={5} className='text-secondary' >Data tidak ditemukan</td>
+      </tr>
+    )
+  }
+
+  function ShowData () {
+    return (
+      searchId.map((item) => (
+        <tr key={item.IdPemesanan}>
+          <td><DetailRiwayat item={item} /></td>
+          <td>{moment(item.TanggalPemesanan).format('DD MMM YYYY (hh:mm:ss)')}</td>
+          <td>{item.TotalQty}</td>
+          <td>{item.Status}</td>
+          <td>
+            {item.Status === 'Berhasil' ? <button type='button' className='btn w-100 btn-outline-success' onClick={() => changeStatus(item.IdPemesanan, 'Selesai')}>Selesai</button> : <button type='button' className='btn w-100 btn-outline-danger' onClick={() => changeStatus(item.IdPemesanan, 'Batal')}>Batal</button> }
+          </td>
+        </tr>
+      ))
+    )
+  }
+
   return (
     <section id={styles.pengunjung}>
-      <div className="d-flex justify-content-between align-items-start w-100 mb-4">
+      <div className="d-flex justify-content-between align-items-center w-100 mb-4">
         <div className="group_title">Pengunjung Hari Ini</div>
-        <Searchbar />
+        <Searchbar keyword={keyword} keywordChange={setKeyword} />
       </div>
 
       {/* Table Pengunjung Hari Ini */}
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Jumlah Tiket Anak</th>
-            <th scope="col">Jumlah Tiket Orang Dewasa</th>
-            <th scope="col">Status</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {pengunjung.map((item) => (
+      <div className={styles.tableContainer}>
+        <table className='table text-center align-middle' >
+          <thead className={styles.thead}>
             <tr>
-              <td>{item.id}</td>
-              <td>{item.jumlah_tiket_anak}</td>
-              <td>{item.jumlah_tiket_dewasa}</td>
-              <td>{item.status}</td>
-              <td>
-                <button
-                  type="button"
-                  className={cn([
-                    "btn w-100",
-                    {
-                      "btn-outline-success": item.status === "Berhasil",
-                      "btn-outline-danger":
-                        item.status === "Menunggu Pembayaran" ||
-                        item.status === "Menunggu Konfirmasi",
-                    },
-                  ])}
-                >
-                  {item.tombol}
-                </button>
-              </td>
+              <th scope="col">Id Pemesanan</th>
+              <th scope="col">Tanggal Pemesanan</th>
+              <th scope="col">Jumlah Tiket</th>
+              <th scope="col">Status</th>
+              <th scope="col"></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody >
+            {searchId.length !== 0 ? <ShowData /> : <EmptyData /> }
+          </tbody>
+        </table>
+      </div>
     </section>
-  );
-};
-
-export default Pengunjung;
+  )
+}

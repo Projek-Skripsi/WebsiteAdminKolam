@@ -7,40 +7,58 @@
   height: 100vh;
   background-color: var(--dark-blue);
   z-index: 100;
+  overflow-y: scroll;
 }
 
 #sidebar header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 48px 8px 48px 32px;
+  text-align: center;
+  padding: 48px 0px;
   color: #fff;
   font-weight: var(--fw-semibold);
   font-size: 24px;
 }
 
-#sidebar ul {
-  margin-top: 64px;
+#sidebar .menuAdmin{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
 }
 
-#sidebar ul a.active {
-  background-color: #434a51;
-  font-weight: var(--fw-semibold);
-}
-
-#sidebar ul li a {
-  color: #fff;
-  font-weight: var(--fw-medium);
+#sidebar .btnMenu{
+  list-style: none;
   text-decoration: none;
-  padding: 24px 0 24px 32px;
-  display: block;
+  color: white;
+  font-weight: var(--fw-medium);
+  padding: 20px 0 20px 30px;
   transition: all 0.2s ease-in-out;
+  background-color: var(--dark-blue);
 }
 
-/* #sidebar ul li.active a {
-  font-weight: var(--fw-semibold);
-} */
+#sidebar .btnLogout{
+  color: red;
+  font-weight: var(--fw-medium);
+  padding: 20px 0 20px 30px;
+  text-align: left;
+  transition: all 0.2s ease-in-out;
+  background-color: var(--dark-blue);
+}
 
-#sidebar ul li a:hover {
+#sidebar .btnMenu:hover {
   background-color: #434a51;
+}
+
+#sidebar .btnLogout:hover {
+  background-color: #434a51;
+  font-weight: var(--fw-semibold);
+}
+
+#sidebar .btnMenuActive {
+  background-color: #434a51;
+  font-weight: var(--fw-semibold);
+  list-style: none;
+  text-decoration: none;
+  color: white;
+  padding: 20px 0 20px 30px;
+  transition: all 0.2s ease-in-out;
 }
