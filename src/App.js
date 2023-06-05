@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import 'styles/app.css'
 import './assets/Fonts/Gloss_And_Bloom.ttf'
 import './assets/Fonts/Inter.ttf'
@@ -23,6 +23,7 @@ import Laporan from 'pages/Laporan/Laporan'
 function App () {
   const [auth, setAuth] = useState(localStorage.getItem(CONFIQ.authAdmin) || null)
   const [dataAdmin, setDataAdmin] = useState([])
+  const navigate = useNavigate()
 
   async function getAllAdmin () {
     const { data } = await getAllDataAdmin()
@@ -51,6 +52,7 @@ function App () {
     if (!error) {
       localStorage.clear()
       setAuth(null)
+      navigate('/')
     }
   }
 
