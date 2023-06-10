@@ -119,6 +119,10 @@ export default function Laporan () {
               <p className='m-0'>{item.Total ? item.Total : 0}</p>
             </div>
           ))}
+          <div className='d-flex justify-content-end text-secondary gap-1 mt-2'>
+            <p className='m-0'>Pendapatan Bersih =</p>
+            <p className='m-0'>{currencyFormat(dataTabel.filter((order) => order.Status === 'Selesai' || order.Status === 'Berhasil').reduce((x, y) => x + y.Total, 0))}</p>
+          </div>
         </div>
       </div>
     </div>
