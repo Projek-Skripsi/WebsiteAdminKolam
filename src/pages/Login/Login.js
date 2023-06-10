@@ -8,7 +8,6 @@ import Swal from 'sweetalert2'
 import Logo from '../../assets/Images/Logo2.png'
 import Loading from 'components/Loading/Loading'
 import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi'
-import { Cursor } from '@phosphor-icons/react'
 
 export default function Login ({ onlogin }) {
   const [email, setEmail] = useInput('')

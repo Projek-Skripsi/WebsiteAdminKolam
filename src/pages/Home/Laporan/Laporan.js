@@ -4,7 +4,8 @@ import cn from 'classnames'
 import styles from './Laporan.module.css'
 
 export default function Laporan ({ allOrder, pendapatan, totalTransaksi }) {
-  const incomeToday = pendapatan.reduce((x, y) => x + y.Total, 0)
+  const pendapatanValid = pendapatan.filter((order) => order.Status === 'Selesai' || order.Status === 'Berhasil')
+  const incomeToday = pendapatanValid.reduce((x, y) => x + y.Total, 0)
 
   return (
     <div id="report" className="row gap-3">

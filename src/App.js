@@ -36,9 +36,9 @@ function App () {
 
   async function onLoginAdmin (data) {
     for (let i = 0; i < dataAdmin.length; i++) {
-      if (dataAdmin[i].IdAdmin === data.uid) {
-        localStorage.setItem(CONFIQ.authAdmin, data.uid)
-        return setAuth(data.uid)
+      if (dataAdmin[i].IdLogin === data.uid) {
+        localStorage.setItem(CONFIQ.authAdmin, dataAdmin[i].IdAdmin)
+        return setAuth(dataAdmin[i].IdAdmin)
       }
     }
     if (auth === null) {

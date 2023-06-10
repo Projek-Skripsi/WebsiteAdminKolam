@@ -28,6 +28,6 @@
 }
 
 .Border {
-    border-left: 3px solid #DDDDDD;
-    border-right: 3px solid #DDDDDD;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
 }

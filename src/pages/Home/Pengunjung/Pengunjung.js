@@ -7,7 +7,7 @@ import Searchbar from 'components/Searchbar/Searchbar'
 export default function Pengunjung ({ data, changeStatus }) {
   const [keyword, setKeyword] = useState('')
 
-  const searchId = data.filter((order) => { return order.IdPemesanan.toString().toLowerCase().includes(keyword.toLocaleLowerCase()) && order.Status !== 'Selesai' })
+  const searchId = data.filter((order) => { return order.IdPemesanan.toString().toLowerCase().includes(keyword.toLocaleLowerCase()) && order.Status !== 'Selesai' && order.Status !== 'Batal' })
 
   function EmptyData () {
     return (
