@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import styles from './Laporan.module.css'
 import cn from 'classnames'
-import { getDataPerusahaan, getDataTabelLaporan, getDataQtyKategori } from 'confiq/api'
+import { getDataPerusahaan, getDataTabelLaporan, getDataQtyKategori, getDataTotalPendapatan } from 'confiq/api'
 import ReactToPrint from 'react-to-print'
 import Loading from 'components/Loading/Loading'
 import moment from 'moment'
+import { Bar } from 'react-chartjs-2'
+import { Chart as ChartJS } from 'chart.js/auto'
 import { currencyFormat } from 'utils/utils'
 import { FaWhatsapp, FaInstagram } from 'react-icons/fa'
 import { FiMail } from 'react-icons/fi'
@@ -16,8 +18,9 @@ export default function Laporan () {
   const periodeAkhir = periode.slice(9)
   const [loading, setLoading] = useState(false)
   const [dataPerusahaan, setDataPerusahaan] = useState([])
-  const [dataTabel, setDataTabel] = useState([])
+  const [chartBar, setChartBar] = useState()
   const [dataQty, setDataQty] = useState([])
+  const [dataPendapatan, setDataPendapatan] = useState([])
   const componentRef = useRef()
 
   async function getPerusahaan () {
@@ -27,7 +30,22 @@ export default function Laporan () {
 
   async function getLaporan () {
     const { data } = await getDataTabelLaporan({ periodeAwal, periodeAkhir })
-    setDataTabel(data)
+    if (data) {
+      setChartBar({
+        labels: data.map((item) => moment(item.TanggalMasuk).format('DD MMM YYYY')),
+        datasets: [
+          {
+            label: 'Anak-Anak',
+            data: data.map((item) => item.Anak)
+          },
+          {
+            label: 'dewasa',
+            data: data.map((item) => item.Dewasa)
+          }
+        ]
+      })
+      console.log(chartBar)
+    }
   }
 
   async function getQtyKategori () {
@@ -35,37 +53,31 @@ export default function Laporan () {
     setDataQty(data)
   }
 
+  async function getTotalPendapatan () {
+    const { data } = await getDataTotalPendapatan({ periodeAwal, periodeAkhir })
+    setDataPendapatan(data[0])
+  }
+
   useEffect(() => {
-    setLoading(true)
-    getPerusahaan()
-    getLaporan()
-    getQtyKategori()
-    setLoading(false)
+    (async () => {
+      setLoading(true)
+      await getPerusahaan()
+      await getLaporan()
+      await getQtyKategori()
+      await getTotalPendapatan()
+      setLoading(false)
+    })()
   }, [])
 
   function EmptyData () {
     return (
-      <tr>
-        <td colSpan={8} className='text-secondary' >Data tidak ditemukan</td>
-      </tr>
+      <p className='text-center text-secondary'>Data tidak ditemukan</p>
     )
   }
 
   function ShowData () {
     return (
-      dataTabel.map((item, index) => (
-        <tr key={item.IdPemesanan}>
-          <td>{index + 1}</td>
-          <td>{item.IdPemesanan}</td>
-          <td>{moment(item.TanggalPemesanan).format('DD MMM YYYY (hh:mm:ss)')}</td>
-          <td>{moment(item.TanggalMasuk).format('DD MMM YYYY')}</td>
-          <td>{item.TotalQty}</td>
-          <td>{currencyFormat(item.Total)}</td>
-          <td>{item.NamaPembayaran}</td>
-          <td>{item.Status}</td>
-          <td></td>
-        </tr>
-      ))
+      <Bar data={chartBar} />
     )
   }
 
@@ -87,30 +99,8 @@ export default function Laporan () {
             <p className={styles.Kontak}><FaInstagram /> {dataPerusahaan.Instagram}</p>
           </div>
         </div>
-        <div className='my-4'>
-          <table class="table text-center align-middle table-responsive">
-            <thead>
-              <tr className='align-middle'>
-                <th scope="col">No</th>
-                <th scope="col">Id Pemesanan</th>
-                <th scope="col">Tanggal Pemesanan</th>
-                <th scope="col">Tanggal Berenang</th>
-                <th scope="col">Qty</th>
-                <th scope="col">Total</th>
-                <th scope="col">Pembayaran</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {dataTabel.length !== 0 ? <ShowData /> : <EmptyData />}
-              <tr className='fw-bold'>
-                <td colSpan={4}>Jumlah</td>
-                <td>{dataTabel.reduce((x, y) => x + y.TotalQty, 0)}</td>
-                <td>{currencyFormat(dataTabel.reduce((x, y) => x + y.Total, 0))}</td>
-                <td colSpan={2}></td>
-              </tr>
-            </tbody>
-          </table>
+        <div className='my-5'>
+          {!chartBar ? <EmptyData /> : <ShowData />}
         </div>
         <div>
           {dataQty.map((item, index) => (
@@ -121,7 +111,7 @@ export default function Laporan () {
           ))}
           <div className='d-flex justify-content-end text-secondary gap-1 mt-2'>
             <p className='m-0'>Pendapatan Bersih =</p>
-            <p className='m-0'>{currencyFormat(dataTabel.filter((order) => order.Status === 'Selesai' || order.Status === 'Berhasil').reduce((x, y) => x + y.Total, 0))}</p>
+            <p className='m-0'>{currencyFormat(dataPendapatan.Total)}</p>
           </div>
         </div>
       </div>

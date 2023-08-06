@@ -297,3 +297,13 @@ export async function getDataQtyKategori ({ periodeAwal, periodeAkhir }) {
     alert(error.code, error.message)
   }
 }
+
+export async function getDataTotalPendapatan ({ periodeAwal, periodeAkhir }) {
+  try {
+    const response = await api.get(`/laporan/pendapatan/${periodeAwal}/${periodeAkhir}`)
+    const data = await response.data.payload
+    return { data }
+  } catch (error) {
+    alert(error.code, error.message)
+  }
+}
