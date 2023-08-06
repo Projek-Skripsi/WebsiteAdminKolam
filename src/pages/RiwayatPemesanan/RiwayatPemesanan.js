@@ -13,7 +13,8 @@ import Searchbar from 'components/Searchbar/Searchbar'
 export default function RiwayatPemesanan () {
   const [loading, setLoading] = useState(false)
   const [keyword, setKeyword] = useState('')
-  const [filter, setFilter] = useState('')
+  const [filterStatus, setFilterStatus] = useState('')
+  const [filterPembayaran, setFilterPembayaran] = useState('')
   const [allPemesanan, setAllPemesanan] = useState([])
   const [dataFilter, setDataFilter] = useState([])
   const [periodeAwal, setPeriodeAwal] = useState('')
@@ -32,13 +33,27 @@ export default function RiwayatPemesanan () {
     setLoading(false)
   }, [])
 
-  function changeFilter (e) {
-    setFilter(e.target.value)
+  function changeFilterStatus (e) {
+    setFilterStatus(e.target.value)
     switch (e.target.value) {
       case '':
+        if (filterPembayaran !== '') return setDataFilter(allPemesanan.filter((order) => { return order.NamaPembayaran === filterPembayaran }))
         return setDataFilter(allPemesanan)
       default:
+        if (filterPembayaran !== '') return setDataFilter(allPemesanan.filter((order) => { return order.Status === e.target.value && order.NamaPembayaran === filterPembayaran }))
         return setDataFilter(allPemesanan.filter((order) => { return order.Status === e.target.value }))
+    }
+  }
+
+  function changeFilterPembayaran (e) {
+    setFilterPembayaran(e.target.value)
+    switch (e.target.value) {
+      case '':
+        if (filterStatus !== '') return setDataFilter(allPemesanan.filter((order) => { return order.Status === filterStatus }))
+        return setDataFilter(allPemesanan)
+      default:
+        if (filterStatus !== '') return setDataFilter(allPemesanan.filter((order) => { return order.NamaPembayaran === e.target.value && order.Status === filterStatus }))
+        return setDataFilter(allPemesanan.filter((order) => { return order.NamaPembayaran === e.target.value }))
     }
   }
 
@@ -85,7 +100,7 @@ export default function RiwayatPemesanan () {
                 <input required type="date" min={periodeAwal} className="form-control py-3" onChange={(e) => setPeriodeAkhir(e.target.value)} />
               </div>
               <div className="col-auto">
-                <button type='submi' className={cn(styles.btn_laporan, 'btn py-3 px-4')}>
+                <button type='submit' className={cn(styles.btn_laporan, 'btn py-3 px-4')}>
                   Tampilkan Laporan
                 </button>
               </div>
@@ -97,14 +112,20 @@ export default function RiwayatPemesanan () {
             <Searchbar keyword={keyword} keywordChange={setKeyword} />
           </div>
           <div className="col-auto d-flex gap-2 align-items-center">
-            <label htmlFor="status" className={cn(styles.label_filter, 'col-form-label w-100')} >Filter berdasarkan status</label>
-            <select value={filter} onChange={(e) => changeFilter(e)} className={cn(styles.filter_select, 'form-select shadow-none')}>
-              <option value=''>Semua</option>
+            <label htmlFor="status" className={cn(styles.label_filter, 'col-form-label w-100')} >Filter berdasarkan</label>
+            <select value={filterStatus} onChange={(e) => changeFilterStatus(e)} className={cn(styles.filter_select, 'form-select shadow-none')}>
+              <option value=''>Semua Status</option>
               <option value='Menunggu Pembayaran'>Menunggu Pembayaran</option>
               <option value='Menunggu Konfirmasi'>Menunggu Konfirmasi</option>
               <option value='Berhasil'>Berhasil</option>
               <option value='Selesai'>Selesai</option>
               <option value='Batal'>Batal</option>
+            </select>
+            <select value={filterPembayaran} onChange={(e) => changeFilterPembayaran(e)} className={cn(styles.filter_select, 'form-select shadow-none')}>
+              <option value=''>Semua Pembayaran</option>
+              <option value='Gopay'>Gopay</option>
+              <option value='Bank Mandiri'>Bank Mandiri</option>
+              <option value='OVO'>OVO</option>
             </select>
           </div>
         </div>
